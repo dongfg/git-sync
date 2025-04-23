@@ -64,4 +64,4 @@ case "$FILENAME" in
 esac
 
 # 清理文件 (可选)
-rm -f "$FILENAME" checksums.txt README.md
+rm -f "$FILENAME" checksums.txt
