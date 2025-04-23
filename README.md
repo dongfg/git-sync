@@ -12,6 +12,12 @@ go install
 ```shell
 go install github.com/dongfg/git-sync@latest
 ```
+
+shell install on unix
+```shell
+curl -sSL https://raw.githubusercontent.com/dongfg/git-sync/refs/heads/master/scripts/install.sh | bash
+```
+
 or [download binary](https://github.com/dongfg/git-sync/releases)
 
 ## 使用
