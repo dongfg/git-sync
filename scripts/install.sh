@@ -3,6 +3,8 @@
 # 配置参数
 REPO_OWNER="dongfg"
 REPO_NAME="git-sync"
+BIN_NAME="git-sync"
+BIN_PATH="/usr/local/bin"
 VERSION="${1:-latest}"  # 支持版本参数
 
 # 系统信息检测
@@ -63,5 +65,11 @@ case "$FILENAME" in
   *) echo "未知文件格式: $FILENAME" ;;
 esac
 
+# 复制到 bin 目录
+chmod +x "${BIN_NAME}"
+if ! mv "${BIN_NAME}" "${BIN_PATH}"; then
+    sudo mv "${BIN_NAME}" "${BIN_PATH}"
+fi
+echo "安装 $BIN_NAME 到 $BIN_PATH"
 # 清理文件 (可选)
 rm -f "$FILENAME" checksums.txt
