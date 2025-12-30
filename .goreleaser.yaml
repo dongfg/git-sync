@@ -42,6 +42,9 @@ archives:
     format_overrides:
       - goos: windows
         formats: [zip]
+    # Packaging only the binaries
+    files:
+      - none*
 
 changelog:
   sort: asc
