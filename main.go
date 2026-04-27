@@ -124,6 +124,7 @@ func main() {
 			return
 		}
 		switchCmd(rr)
+		apply(repo, rr)
 	} else {
 		fmt.Println("invalid args")
 	}
