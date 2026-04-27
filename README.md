@@ -43,12 +43,15 @@ or [download binary](https://github.com/dongfg/git-sync/releases)
 
 ## 使用
 ```shell
-# 可选, git alias 配置
+# 可选, 正常情况下 git 会自动支持 git sync 命令
 # git config --global alias.sync "!git-sync"
 
 # 从仓库读取配置应用
-git-sync
+git sync
 
 # 保存 git 配置到当前仓库
-git-sync save
+git sync save
+
+# 切换远程地址的顺序，把第一个移动到最后末尾
+git sync switch
 ```
