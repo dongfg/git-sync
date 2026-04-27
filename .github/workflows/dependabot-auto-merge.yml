@@ -18,13 +18,14 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Set up Go
-        uses: actions/setup-go@v5
-
+        uses: actions/setup-go@v6
+        with:
+          go-version: stable
       - name: Build project
         run: |
           go mod tidy
@@ -32,7 +33,7 @@ jobs:
 
       - name: Auto-merge PR
         if: success() # 仅在构建成功时运行
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.pulls.merge({

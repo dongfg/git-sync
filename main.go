@@ -53,7 +53,7 @@ func save(gr *GitRemote) {
 
 	// 设置 url
 	for _, url := range gr.URLs {
-		cfg.WriteString(fmt.Sprintf("url = %s\n", url))
+		_, _ = fmt.Fprintf(&cfg, "url = %s\n", url)
 	}
 
 	_ = os.WriteFile(GitConfigName, []byte(cfg.String()), 0666)
