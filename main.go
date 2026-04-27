@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/go-git/go-git/v5/config"
 	"os"
 	"os/exec"
 	"strings"
+
+	"github.com/go-git/go-git/v5/config"
 
 	"github.com/go-git/go-git/v5"
 	"gopkg.in/ini.v1"
@@ -58,6 +59,15 @@ func save(gr *GitRemote) {
 	_ = os.WriteFile(GitConfigName, []byte(cfg.String()), 0666)
 }
 
+func switchCmd(gr *GitRemote) {
+	if len(gr.URLs) <= 1 {
+		return
+	}
+	// 把第一个 url 移到末尾
+	gr.URLs = append(gr.URLs[1:], gr.URLs[0])
+	save(gr)
+}
+
 func apply(repo *git.Repository, gr *GitRemote) {
 	_ = repo.DeleteRemote("origin")
 	_, _ = repo.CreateRemote(&config.RemoteConfig{
@@ -107,6 +117,13 @@ func main() {
 			return
 		}
 		save(rr)
+	} else if args[0] == "switch" {
+		// switch config
+		rr := readRepoRemote(repo)
+		if rr == nil {
+			return
+		}
+		switchCmd(rr)
 	} else {
 		fmt.Println("invalid args")
 	}
