@@ -3,7 +3,7 @@ module github.com/dongfg/git-sync
 go 1.26
 
 require (
-	github.com/go-git/go-git/v5 v5.19.0
+	github.com/go-git/go-git/v5 v5.19.1
 	gopkg.in/ini.v1 v1.67.2
 )
 
