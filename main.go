@@ -18,6 +18,9 @@ type GitRemote struct {
 
 var GitConfigName = ".gitconfig"
 
+// 版本信息，编译时通过 -ldflags "-X main.version=v1.0.0" 注入
+var version = "dev"
+
 func parseConfigRemote() *GitRemote {
 	gr := &GitRemote{}
 	cfg, err := ini.LoadSources(ini.LoadOptions{AllowShadows: true}, GitConfigName)
@@ -69,6 +72,7 @@ func switchCmd(gr *GitRemote) {
 }
 
 func apply(repo *git.Repository, gr *GitRemote) {
+	fmt.Println(gr.URLs)
 	_ = repo.DeleteRemote("origin")
 	_, _ = repo.CreateRemote(&config.RemoteConfig{
 		Name: "origin",
@@ -110,6 +114,10 @@ func main() {
 			return
 		}
 		apply(repo, cr)
+	} else if args[0] == "-v" || args[0] == "--version" {
+		// 打印版本信息
+		fmt.Println(version)
+		return
 	} else if args[0] == "save" {
 		// save config
 		rr := readRepoRemote(repo)
