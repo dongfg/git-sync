@@ -4,7 +4,7 @@ go 1.26.0
 
 require (
 	github.com/go-git/go-git/v5 v5.19.3
-	gopkg.in/ini.v1 v1.67.3
+	gopkg.in/ini.v1 v1.68.0
 )
 
 require (
